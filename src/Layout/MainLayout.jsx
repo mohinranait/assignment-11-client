@@ -6,6 +6,7 @@ import { useState } from "react";
 import Logo from "../components/Logo";
 
 import SocialLinks from "../components/SocilaLinks/SocialLinks";
+import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
     
@@ -22,6 +23,7 @@ const MainLayout = () => {
          <Header toggleMobileMenu={toggleMobileMenu} /> 
          
             <Outlet />
+            <Toaster />
 
             <footer className="bg-white">
                 <div className="py-20">
