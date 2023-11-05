@@ -43,6 +43,7 @@ const AllAssignments = () => {
             setCurrentPage(currentPage - 1)
         }
     }
+    
 
     const handleNext = () => {
         if( totlaPages-1 > currentPage  ){
