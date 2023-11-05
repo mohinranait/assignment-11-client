@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { IoPlay } from "react-icons/io5";
 import avater from "../../assets/images/user/avatar-2.jpg"
-import { FaCertificate } from 'react-icons/fa6';
+import { FaArrowLeft, FaCertificate } from 'react-icons/fa6';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
 
 const Details = () => {
+    const navigate = useNavigate();
     const {user} = useAuth();
     const axios = useAxios();
     const course = useLoaderData();
     const {title, thumnail, marks, level,description,date} = course || {};
 
-    const {mutate:SubMitsion} = useMutation({
+    const {mutate:subMitsion} = useMutation({
         mutationFn: async (submition) => {
             try {
                 const res = await axios.post(`/create-submition`, submition);
@@ -39,10 +40,12 @@ const Details = () => {
         const note = form.note.value;
         const status = false;
         const email = user?.email;
-        const submission = {pdf,note,status,email};
+        const submission = {pdf,note,status,email,title,level, marks, thumnail};
+
 
         try {
-            SubMitsion(submission)
+            subMitsion(submission)
+            form.reset();
         } catch (error) {
             toast.error("Somthing wrong");
         }
@@ -58,9 +61,8 @@ const Details = () => {
                                 <div className="lg:col-span-3">
                                     <ul className=" space-y-4 md:space-y-6 lg:space-y-8">
                                         <li className="flex items-center gap-x-3 text-gray-600">
-                                            <a href="./index.html" >Home</a>
-                                            <i className="fas fa-angle-right text-sm"></i>
-                                            <span className="text-gray-400">Web Development</span>
+                                            <button onClick={() => navigate(-1)} className='flex gap-1 items-center'> <FaArrowLeft /> Go back</button>
+                                           
                                         </li>
                                         <li className="flex items-center gap-x-4">
                                             <h1 className=" text-2xl md:text-4xl lg:text-5xl font-bold">{title}</h1>
@@ -165,7 +167,7 @@ const Details = () => {
             <dialog id="my_modal_4" className="modal">
                 <div className="modal-box lg:w-1/2 max-w-5xl">
                     <h3 className="font-bold text-lg">Hello!</h3>
-                    <form onSubmit={handleSubmision}>
+                    <form onSubmit={handleSubmision} >
                         <div className="form-control mb-4">
                             <label className="label">
                                 <span className="label-text">PDF Link</span>

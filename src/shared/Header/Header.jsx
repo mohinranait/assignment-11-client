@@ -32,6 +32,7 @@ const Header = ({toggleMobileMenu}) => {
                                 <ul className="hidden lg:flex items-center justify-center">
                                     <li><NavLink to={'/'} className="text-base px-3 py-1 font-medium" >Home</NavLink></li>
                                     <li><NavLink to={'/assignment'} className="text-base px-3 py-1 font-medium" >Assignment</NavLink></li>
+                                    <li><NavLink to={'/all-submited'} className="text-base px-3 py-1 font-medium" >all submitted</NavLink></li>
                                     {
                                         user?.email ? <>
                                         <li><button onClick={handleLogout} className="text-base px-3 py-1 font-medium" >Logout</button></li>

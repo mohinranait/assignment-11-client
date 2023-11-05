@@ -11,6 +11,7 @@ import Dashboard from "../pages/user/Dashboard";
 import AllAssignment from "../pages/user/AllAssignment";
 import Account from "../pages/user/Account";
 import Details from "../pages/Details/Details";
+import AllSubmited from "../pages/AllSubmited/AllSubmited";
 
 const myRoutes = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const myRoutes = createBrowserRouter([
             {
                 path : '/assignment',
                 element : <AllAssignments />,
+            },
+            {
+                path : '/all-submited',
+                element : <AllSubmited />,
             },
             {
                 path : '/assignments/:id',
