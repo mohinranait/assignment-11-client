@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
 import AssignmentCard from "../../components/AssignmentCard";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+
 
 
 const AllAssignments = () => {
@@ -79,7 +79,7 @@ const AllAssignments = () => {
                     <ul className="flex items-center justify-start gap-3">
                         <li><button onClick={handlePrevius} className={`px-3 py-1 rounded inline-block  font-semibold ${currentPage === 0 ? 'bg-slate-200 text-gray-400':'bg-blue-600 text-white'} `}>Prev</button></li>
                         {
-                            pages?.map(button => <li key={button}><button onClick={()=>handleCurrentPage(button)}  className={`px-3 py-1 rounded inline-block  font-semibold ${currentPage == button ? 'bg-blue-600 text-white':'bg-white text-gray-700'} `}>{++button}</button></li> )
+                            pages?.map(button => <li key={button}><button onClick={()=>handleCurrentPage(button)}  className={`px-3 py-1 rounded inline-block border font-semibold ${currentPage == button ? 'bg-blue-600 text-white':'bg-white text-gray-700'} `}>{++button}</button></li> )
                         }
                         <li><button onClick={handleNext} className={`px-3 py-1 rounded inline-block  font-semibold ${currentPage === totlaPages-1 ? 'bg-slate-200 text-gray-400':'bg-blue-600 text-white'} `}>Next</button></li>
                     </ul>

@@ -35,8 +35,9 @@ const CreateAssignment = () => {
         const description = form.description.value;
         const thumnail = form.thumnail.value;
         const date = form.date.value;
+        const features = form.features.value == 'true' ? true : false;
         const email = user?.email;
-        const assignment = {title, marks, level, description, thumnail, date, email};
+        const assignment = {title, marks,features, level, description, thumnail, date, email};
 
         try {
             mutate(assignment)
@@ -48,7 +49,7 @@ const CreateAssignment = () => {
     return (
         <section>
             <div className="container px-5 lg:px-0">
-                <div className='bg-white my-16 px-8 py-10 md:px-20 md:py-20'>
+                <div className='bg-white  px-8 py-10'>
                     <form onSubmit={handleSubmitAssignment}>
                         <p className='text-2xl font-semibold text-gray-700'>Crate new assignment</p>
                         <div className="grid grid-cols-1 gap-5 mb-4">
@@ -69,12 +70,22 @@ const CreateAssignment = () => {
                             </div>
                         </div>
                        
-                        <div className="grid grid-cols-1 gap-5 mb-4">
+                        <div className="grid md:grid-cols-2 gap-5 mb-4">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Date</span>
                                 </label>
                                 <input type="date" name='date' placeholder="Date" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Feature Products</span>
+                                </label>
+                                <select name="features" id="" className="input input-bordered">
+                                    <option value="">Feature Products</option>
+                                    <option value="false">Non Features</option>
+                                    <option value="true">Is Features</option>
+                                </select>
                             </div>
                         </div>
                        

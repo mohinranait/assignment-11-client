@@ -36,8 +36,9 @@ const UpdateAssignment = () => {
         const description = form.description.value;
         const thumnail = form.thumnail.value;
         const date = form.date.value || getAsmt?.date;
+        const features = form.features.value == 'true' ? true : false;
         // const email = getAsmt?.email
-        const assignment = {title, marks, level, description, thumnail, date};
+        const assignment = {title, marks, features, level, description, thumnail, date};
 
         try {
             mutate(assignment)
@@ -50,7 +51,7 @@ const UpdateAssignment = () => {
     return (
         <section>
             <div className="container px-5 lg:px-0">
-                <div className='bg-white my-16 px-8 py-10 md:px-20 md:py-20'>
+                <div className='bg-white  px-8 py-10 '>
                     <form onSubmit={handleSubmitAssignment}>
                         <p className='text-2xl font-semibold text-gray-700'>Update assignment</p>
                         <div className="grid grid-cols-1 gap-5 mb-4">
@@ -71,12 +72,22 @@ const UpdateAssignment = () => {
                             </div>
                         </div>
                        
-                        <div className="grid grid-cols-1 gap-5 mb-4">
+                        <div className="grid md:grid-cols-2 gap-5 mb-4">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Date</span>
                                 </label>
                                 <input type="date" name='date' defaultValue={getAsmt.date} placeholder="Date" className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Features {getAsmt?.features}</span>
+                                </label>
+                                <select name="features" id="" className="input input-bordered">
+                                    <option value="">Feature Products  </option>
+                                    <option value="false" selected={getAsmt?.features == false  ? 'selected':''} >In Acitve</option>
+                                    <option value="true" selected={getAsmt?.features == true ? 'selected':'' } >Acitve</option>
+                                </select>
                             </div>
                         </div>
                        
@@ -93,9 +104,9 @@ const UpdateAssignment = () => {
                                 </label>
                                 <select name="level" id="" className="input input-bordered">
                                     <option value="">Select Level</option>
-                                    <option value="easy">Easy</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="hard">Hard</option>
+                                    <option value="easy" selected={getAsmt?.level == 'easy' ? 'selected':''} >Easy</option>
+                                    <option value="medium" selected={getAsmt?.level == 'medium' ? 'selected':''} >Medium</option>
+                                    <option value="hard" selected={getAsmt?.level == 'hard' ? 'selected':''} >Hard</option>
                                 </select>
                             </div>
                         </div>

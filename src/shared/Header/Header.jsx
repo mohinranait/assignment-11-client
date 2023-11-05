@@ -52,12 +52,14 @@ const Header = ({toggleMobileMenu}) => {
                                                 <p className='text-center text-lg font-semibold'>{user?.displayName}</p> 
                                                 <p className='text-center text-sm font-medium text-gray-400'>{user?.email}</p>
                                             </li>
+                                            <li className='px-4 py-2'><Link to={'/dashboard'} className='flex items-center gap-2'> <IoLogOutOutline /> Dashboard</Link></li>
+                                            <li className='px-4 py-2'><Link className='flex items-center gap-2'> <IoLogOutOutline /> My Assignment</Link></li>
                                             <li className='px-4 py-2'><button onClick={handleLogout} className='flex items-center gap-2'> <IoLogOutOutline /> Logout</button></li>
                                         </ul>
                                     </div>
                                     }
                                    
-                                    <Link to={'/create-assignment'} className=" group  w-[150px] overflow-hidden transition-all duration-300 font-semibold text-white  rounded-md">
+                                    <Link to={'/dashboard/create-assignment'} className=" group  w-[150px] overflow-hidden transition-all duration-300 font-semibold text-white  rounded-md">
                                         <div className="flex items-center w-[300px] flex-nowrap   bg-gradient-to-l from-blue-500 via-purple-500 to-blue-500  group-hover:-translate-x-[150px] duration-500">
                                             <span className="w-[150px] py-3  inline-block text-center ">Assignment</span>
                                             <span className="w-[150px] py-3  inline-block text-center">Assignment</span>
