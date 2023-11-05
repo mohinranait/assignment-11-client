@@ -75,45 +75,45 @@ const Register = () => {
     }
     return (
         <section className=''>
-        <div className=' min-h-screen py-28' >
-            <div className="container flex items-start">
-                <div className=" w-[300px] md:w-[450px] overflow-hidden  mx-auto rounded-lg">
-                    
-                        <div className='px-5 py-5 md:px-10 md:pb-10 rounded-b-lg bg-white overflow-hidden border '>
-                            <div className='text-3xl pb-5 font-semibold text-gray-700 '>Register Form</div>
-                            <div>
-                                <form onSubmit={handleRegister}>
-                                    <div className='mb-4'>
-                                        <label htmlFor="" className='mb-1 block font-medium text-gray-300'>Full Name</label>
-                                        <input type="text" name='name' placeholder='Full Name' className='px-3 w-full py-3  border border-gray-200 text-gray-800 rounded-md outline-none' />
-                                    </div>
-                                    <div className='mb-4'>
-                                        <label htmlFor="" className='mb-1 block font-medium text-gray-300'>Image URL</label>
-                                        <input type="text" name='photo' placeholder='Image URL' className='px-3 w-full py-3  border border-gray-200 text-gray-800 rounded-md outline-none' />
-                                    </div>
-                                    <div className='mb-4'>
-                                        <label htmlFor="" className='mb-1 block font-medium text-gray-300'>Email</label>
-                                        <input type="email" name='email' placeholder='Email' className='px-3 w-full py-3  border border-gray-200 text-gray-800 rounded-md outline-none' />
-                                    </div>
-                                    <div className='mb-5'>
-                                        <label htmlFor="" className='mb-1 block font-medium text-gray-300'>Password</label>
-                                        <input type="password" name='password' placeholder='Password' className='px-3 w-full py-3  border border-gray-200 text-gray-800 rounded-md outline-none' />
-                                    </div>
-                                    <div className='mb-4 flex gap-5'>
-                                        <button type='submit' className='px-5 py-3 rounded-md bg-primary text-white font-medium w-full'>Sign Up</button>
-                                       <SocilaLogin />
-                                    </div>
-                                </form>
+            <div className=' min-h-screen py-28' >
+                <div className="container flex items-start">
+                    <div className=" w-[300px] md:w-[450px] overflow-hidden  mx-auto rounded-lg">
+                        
+                            <div className='px-5 py-5 md:px-10 md:pb-10 rounded-b-lg bg-white overflow-hidden border '>
+                                <div className='text-3xl pb-5 font-semibold text-gray-700 '>Register Form</div>
+                                <div>
+                                    <form onSubmit={handleRegister}>
+                                        <div className='mb-4'>
+                                            <label htmlFor="" className='mb-1 block font-medium text-gray-300'>Full Name</label>
+                                            <input type="text" name='name' placeholder='Full Name' className='px-3 w-full py-3  border border-gray-200 text-gray-800 rounded-md outline-none' />
+                                        </div>
+                                        <div className='mb-4'>
+                                            <label htmlFor="" className='mb-1 block font-medium text-gray-300'>Image URL</label>
+                                            <input type="text" name='photo' placeholder='Image URL' className='px-3 w-full py-3  border border-gray-200 text-gray-800 rounded-md outline-none' />
+                                        </div>
+                                        <div className='mb-4'>
+                                            <label htmlFor="" className='mb-1 block font-medium text-gray-300'>Email</label>
+                                            <input type="email" name='email' placeholder='Email' className='px-3 w-full py-3  border border-gray-200 text-gray-800 rounded-md outline-none' />
+                                        </div>
+                                        <div className='mb-5'>
+                                            <label htmlFor="" className='mb-1 block font-medium text-gray-300'>Password</label>
+                                            <input type="password" name='password' placeholder='Password' className='px-3 w-full py-3  border border-gray-200 text-gray-800 rounded-md outline-none' />
+                                        </div>
+                                        <div className='mb-4 flex gap-5'>
+                                            <button type='submit' className='px-5 py-3 rounded-md bg-primary text-white font-medium w-full'>Sign Up</button>
+                                        <SocilaLogin />
+                                        </div>
+                                    </form>
+                                </div>
+                                <p className='text-center text-gray-700'>Already have a  account ? <Link to={'/login'} className='text-primary'>Sign In</Link> </p>
+                                
                             </div>
-                            <p className='text-center text-gray-700'>Already have a  account ? <Link to={'/login'} className='text-primary'>Sign In</Link> </p>
-                            
-                        </div>
-                
+                    
+                    </div>
+                    
                 </div>
-                
             </div>
-        </div>
-    </section>
+        </section>
     );
 };
 

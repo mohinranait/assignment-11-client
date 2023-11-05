@@ -1,8 +1,8 @@
-
+import PropTypes from "prop-types"
 import { HiBars3CenterLeft } from 'react-icons/hi2';
 import HomeBanner from '../../components/Banner/HomeBanner';
 import Logo from '../../components/Logo';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { IoLogOutOutline } from 'react-icons/io5';
 import useAuth from '../../hooks/useAuth';
 
@@ -15,7 +15,7 @@ const Header = ({toggleMobileMenu}) => {
     }
     return (
         <>
-           <header  className={`relative ${location.pathname == '/' ? 'pt-10':"pt-0"} `}>
+           <header  className={`relative pt-10`}>
                 <div className="w-72 md:w-[700px] blur-3xl -z-10 h-[350px] left-0 bottom-0 bg-blue-100 absolute"></div>
                 <div className="w-72 md:w-[400px] blur-3xl -z-10 h-[300px] right-0 top-0 bg-red-100 absolute"></div>
                 <div>
@@ -31,6 +31,7 @@ const Header = ({toggleMobileMenu}) => {
                             
                                 <ul className="hidden lg:flex items-center justify-center">
                                     <li><NavLink to={'/'} className="text-base px-3 py-1 font-medium" >Home</NavLink></li>
+                                    <li><NavLink to={'/assignment'} className="text-base px-3 py-1 font-medium" >Assignment</NavLink></li>
                                     {
                                         user?.email ? <>
                                         <li><button onClick={handleLogout} className="text-base px-3 py-1 font-medium" >Logout</button></li>
@@ -56,12 +57,12 @@ const Header = ({toggleMobileMenu}) => {
                                     </div>
                                     }
                                    
-                                    <a href="#" className=" group  w-[150px] overflow-hidden transition-all duration-300 font-semibold text-white  rounded-md">
+                                    <Link to={'/create-assignment'} className=" group  w-[150px] overflow-hidden transition-all duration-300 font-semibold text-white  rounded-md">
                                         <div className="flex items-center w-[300px] flex-nowrap   bg-gradient-to-l from-blue-500 via-purple-500 to-blue-500  group-hover:-translate-x-[150px] duration-500">
                                             <span className="w-[150px] py-3  inline-block text-center ">Assignment</span>
                                             <span className="w-[150px] py-3  inline-block text-center">Assignment</span>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </div>
                             </nav>
                         </div>
@@ -76,5 +77,10 @@ const Header = ({toggleMobileMenu}) => {
         </>
     );
 };
+
+
+Header.propTypes = {
+    toggleMobileMenu: PropTypes.func
+}
 
 export default Header;
