@@ -18,7 +18,13 @@ const useAxios = () => {
             console.log(error);
             if( error.response.status === 401 || error.response.status === 403 ){
                 // Logout
-                await logout()
+                console.log("inside if block");
+                // await logout()
+                logout()
+                .then(res => res.json())
+                .then(data=>{
+                    console.log('Logout browser',data)
+                });
             }
         })
     },[logout])

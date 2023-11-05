@@ -9,7 +9,7 @@ import { useState } from "react";
 const AllAssignments = () => {
     const axios = useAxios();
     const [selectLevel, setSelectLevel] = useState('');
-    const [parPage, setParPage] = useState(2)
+    const [parPage, setParPage] = useState(10)
     const [currentPage, setCurrentPage] = useState(0);
 
   
@@ -60,7 +60,7 @@ const AllAssignments = () => {
             <div className="container px-5 lg:px-0">
                 <div className="flex justify-between items-center py-3 bg-white rounded-md mt-16 mb-6 shadow px-5">
                     <div className="font-medium">
-                        Total <span className="font-semibold">{assignments?.result?.length}</span> assignments
+                        Total <span className="font-semibold">{totalAssignment}</span> - view <span className="font-semibold">{assignments?.result?.length}</span> assignments
                     </div>
                     <div>
                         <select name="" onChange={handleFilter} className="input input-bordered" id="">

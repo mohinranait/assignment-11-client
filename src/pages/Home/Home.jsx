@@ -1,7 +1,19 @@
+import { useQuery } from "@tanstack/react-query";
 import AssignmentCard from "../../components/AssignmentCard";
+import useAxios from "../../hooks/useAxios";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
+    const axios = useAxios();
+    const {data:features} = useQuery({
+        queryKey:['features'],
+        queryFn: async () => {
+            const res = await axios.get("/features-assignment");
+            const result = await res.data;
+            return result; 
+        }
+    })
     return (
         <>
             <section>
@@ -10,10 +22,12 @@ const Home = () => {
                         <p className="text-3xl font-bold text-center">Features assignments</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <AssignmentCard />
-                    <AssignmentCard />
-                    <AssignmentCard />
-                    <AssignmentCard />
+                        {
+                            features?.map(item => <AssignmentCard key={item?._id} assignment={item}  /> )
+                        }
+                    </div>
+                    <div className="text-center py-10">
+                        <Link to={'/assignment'} className="btn bg-blue-600 text-white hover:text-blue-600">View All</Link>
                     </div>
                 </div>
             </section>

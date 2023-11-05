@@ -21,15 +21,14 @@ const Header = ({toggleMobileMenu}) => {
                 <div>
                     <div className="container px-4 lg:px-0 z-30 top-0  transition-all duration-1000  left-0 right-0">
                         <div className="" >
-                            <nav className="flex  lg:grid lg:grid-cols-3 items-center shadow-[0px_6px_34px_rgba(215_,_216_,_222_,_0.41)] justify-between bg-white h-20 px-5 rounded-md">
+                            <nav className="flex  lg:grid lg:grid-cols-4 items-center shadow-[0px_6px_34px_rgba(215_,_216_,_222_,_0.41)] justify-between bg-white h-20 px-5 rounded-md">
                                 <div className=" grid grid-cols-2 w-full items-center justify-between ">
                                     <Logo />
                                     <button onClick={toggleMobileMenu} className="block ml-auto lg:hidden text-gray-600">
                                         <HiBars3CenterLeft className='text-3xl' />
                                     </button>
                                 </div>
-                            
-                                <ul className="hidden lg:flex items-center justify-center">
+                                <ul className="hidden lg:col-span-2 lg:flex items-center justify-center">
                                     <li><NavLink to={'/'} className="text-base px-3 py-1 font-medium" >Home</NavLink></li>
                                     <li><NavLink to={'/assignment'} className="text-base px-3 py-1 font-medium" >Assignment</NavLink></li>
                                     <li><NavLink to={'/all-submited'} className="text-base px-3 py-1 font-medium" >all submitted</NavLink></li>

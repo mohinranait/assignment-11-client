@@ -48,11 +48,14 @@ const AuthProvider = ({children}) => {
 
     useEffect(() => {
         const onSubscribe = onAuthStateChanged(auth,  currentUser => {
-            const email = currentUser?.email || user?.email
+            const email = currentUser?.email 
             setUser(currentUser);
             setIsLoading(false);
             if(email){
-                
+                 axios.post(`/jwt`, {email})
+                 .then(res => {
+                    console.log(res.data);
+                 });
                 console.log(currentUser);
             }else{
                  axios.post("/logout", {email})
@@ -66,7 +69,7 @@ const AuthProvider = ({children}) => {
         return () => {
             onSubscribe();
         }
-    },[axios,user])
+    },[user])
 
     const userInfo = {
         user,
