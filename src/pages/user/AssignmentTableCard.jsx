@@ -4,16 +4,18 @@ import { Link } from 'react-router-dom';
 import { IoPencilSharp, IoTrashOutline } from 'react-icons/io5';
 import useAxios from '../../hooks/useAxios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import useAuth from '../../hooks/useAuth';
 
 const AssignmentTableCard = ({assignment}) => {
+    const {user} = useAuth();
     const queryClient = useQueryClient()
     const axios = useAxios();
     const {_id,title,marks,level,features} = assignment || {};
-    console.log(assignment);
+
 
     const {mutate:deleteMyAssignment} = useMutation({
         mutationFn: async (_id) => {
-            const res = await axios.delete(`/delete-my-assign/${_id}`)
+            const res = await axios.delete(`/delete-my-assign/${_id}?email=${user?.email}`)
             const result = await res.data;
             if(result.deletedCount > 0){
                 swal("Your assignment has been deleted!", {

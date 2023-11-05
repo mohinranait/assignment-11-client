@@ -2,11 +2,13 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword,GoogleAuthPr
 import { createContext, useEffect, useState } from "react";
 import auth from "../services/firebase";
 import PropTypes from "prop-types"
+import useAxios from "../hooks/useAxios";
 const googleProvider = new GoogleAuthProvider();
 
 export const AuthContext = createContext({});
 
 const AuthProvider = ({children}) => {
+    const axios  = useAxios();
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -45,16 +47,21 @@ const AuthProvider = ({children}) => {
 
 
     useEffect(() => {
-        const onSubscribe = onAuthStateChanged(auth, currentUser => {
+        const onSubscribe = onAuthStateChanged(auth, async currentUser => {
             setUser(currentUser);
-            console.log(currentUser);
             setIsLoading(false);
+            if(currentUser){
+                await axios.post(`/jwt`, {email: currentUser?.email});
+                console.log(currentUser);
+            }else{
+                console.log("user ni");
+            }
         });
 
         return () => {
             onSubscribe();
         }
-    },[])
+    },[axios])
 
     const userInfo = {
         user,
