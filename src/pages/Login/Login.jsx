@@ -2,10 +2,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocilaLogin from "../../components/SocilaLogin";
 import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
 
 
 const Login = () => {
-
+    const axios = useAxios();
     const {login} = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
@@ -26,6 +27,10 @@ const Login = () => {
         try {
             await login(email, password);
             toast.success("Login Successfull");
+            axios.post(`/jwt`, {email})
+            .then(res => {
+               console.log(res.data);
+            });
             navigate( location?.state ? location?.state : '/' )
         } catch (error) {
             if( error.message == 'Firebase: Error (auth/invalid-login-credentials).' ){

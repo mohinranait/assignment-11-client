@@ -47,14 +47,18 @@ const AuthProvider = ({children}) => {
 
 
     useEffect(() => {
-        const onSubscribe = onAuthStateChanged(auth, async currentUser => {
+        const onSubscribe = onAuthStateChanged(auth,  currentUser => {
+            const email = currentUser?.email || user?.email
             setUser(currentUser);
             setIsLoading(false);
-            if(currentUser){
-                await axios.post(`/jwt`, {email: currentUser?.email});
+            if(email){
+                
                 console.log(currentUser);
             }else{
-                await axios.post("/clear-cookies", {});
+                 axios.post("/logout", {email})
+                 .then(res => {
+                    console.log(res.data);
+                 });
                 console.log("user ni");
             }
         });
@@ -62,7 +66,7 @@ const AuthProvider = ({children}) => {
         return () => {
             onSubscribe();
         }
-    },[axios])
+    },[axios,user])
 
     const userInfo = {
         user,
