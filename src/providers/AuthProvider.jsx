@@ -54,6 +54,7 @@ const AuthProvider = ({children}) => {
                 await axios.post(`/jwt`, {email: currentUser?.email});
                 console.log(currentUser);
             }else{
+                await axios.post("/clear-cookies", {});
                 console.log("user ni");
             }
         });
