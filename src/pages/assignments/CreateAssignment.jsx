@@ -3,10 +3,15 @@ import useAuth from '../../hooks/useAuth';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import useAxios from '../../hooks/useAxios';
+import DatePickerCompo from '../../components/DatePickerCompo';
+import { useState } from 'react';
 
 const CreateAssignment = () => {
+    const [date, setDate] = useState('');
     const {user} = useAuth();
     const axios = useAxios();
+    
+
 
     const {mutate} = useMutation({
         mutationFn: async (assignment) => {
@@ -24,6 +29,8 @@ const CreateAssignment = () => {
         }
     })
 
+
+
     const handleSubmitAssignment = async (e) => {
         e.preventDefault();
 
@@ -34,18 +41,25 @@ const CreateAssignment = () => {
         const level = form.level.value || 'easy';
         const description = form.description.value;
         const thumnail = form.thumnail.value;
-        const date = form.date.value;
+        const datee = date || '';
         const features = form.features.value == 'true' ? true : false;
         const email = user?.email;
-        const assignment = {title, marks,features, level, description, thumnail, date, email};
+        const assignment = {title, marks,features, level, description, thumnail, date:datee, email};
 
+    
+        
         try {
             mutate(assignment)
+            form.reset();
         } catch (error) {
             toast.error(error.message)
         }
 
     }
+
+
+   
+
     return (
         <section>
             <div className="container px-5 lg:px-0">
@@ -71,12 +85,11 @@ const CreateAssignment = () => {
                         </div>
                        
                         <div className="grid md:grid-cols-2 gap-5 mb-4">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Date</span>
-                                </label>
-                                <input type="date" name='date' placeholder="Date" className="input input-bordered" required />
+                            
+                            <div className='w-full'>
+                                <DatePickerCompo setDate={setDate} />
                             </div>
+                           
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Feature Products</span>

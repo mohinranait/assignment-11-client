@@ -4,9 +4,13 @@ import useAxios from '../../hooks/useAxios';
 import { useMutation } from '@tanstack/react-query';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import DatePickerCompo from '../../components/DatePickerCompo';
+import { useState } from 'react';
 
 const UpdateAssignment = () => {
+    
     const getAsmt= useLoaderData();
+    const [date, setDate] = useState(getAsmt?.date)
     const {user} = useAuth();
     const axios = useAxios();
     const navigate = useNavigate();
@@ -38,17 +42,16 @@ const UpdateAssignment = () => {
         const level = form.level.value || getAsmt?.level;
         const description = form.description.value;
         const thumnail = form.thumnail.value;
-        const date = form.date.value || getAsmt?.date;
+        const datee = date || getAsmt?.date;
         const features = form.features.value == 'true' ? true : false;
         // const email = getAsmt?.email
-        const assignment = {title, marks, features, level, description, thumnail, date};
+        const assignment = {title, marks, features, level, description, thumnail, date:datee};
 
         try {
             mutate(assignment)
         } catch (error) {
             toast.error(error.message)
         }
-
     }
 
     return (
@@ -76,11 +79,8 @@ const UpdateAssignment = () => {
                         </div>
                        
                         <div className="grid md:grid-cols-2 gap-5 mb-4">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Date</span>
-                                </label>
-                                <input type="date" name='date' defaultValue={getAsmt.date} placeholder="Date" className="input input-bordered" required />
+                            <div className='w-full'>
+                                <DatePickerCompo setDate={setDate} currentDate={getAsmt?.date} />
                             </div>
                             <div className="form-control">
                                 <label className="label">
