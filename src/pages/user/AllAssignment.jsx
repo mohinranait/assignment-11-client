@@ -4,12 +4,13 @@ import AssignmentTableCard from './AssignmentTableCard';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
 import useAuth from '../../hooks/useAuth';
+import LoadingSpin from '../../components/LoadingSpin';
 
 const AllAssignment = () => {
     const {user} = useAuth();
     const axios = useAxios();
 
-    const {data:assignments} = useQuery({
+    const {data:assignments, isLoading} = useQuery({
         queryKey : ['myassignments'],
         queryFn: async () => {
             const res = await axios.get(`/my-assignment?email=${user?.email}`);
@@ -17,6 +18,10 @@ const AllAssignment = () => {
             return result;
         }
     })
+
+    if(isLoading){
+        return <LoadingSpin />
+    }
 
     return (
         <div className=''>

@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import AssignmentCard from "../../components/AssignmentCard";
 import useAxios from "../../hooks/useAxios";
 import { Link } from "react-router-dom";
+import LoadingSpin from "../../components/LoadingSpin";
 
 
 const Home = () => {
     const axios = useAxios();
-    const {data:features} = useQuery({
+    const {data:features, isLoading} = useQuery({
         queryKey:['features'],
         queryFn: async () => {
             const res = await axios.get("/features-assignment");
@@ -14,6 +15,10 @@ const Home = () => {
             return result; 
         }
     })
+
+    if( isLoading){
+        return <LoadingSpin />
+    }
     return (
         <>
             <section>

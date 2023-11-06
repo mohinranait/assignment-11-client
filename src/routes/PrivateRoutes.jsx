@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import PropTypes from "prop-types"
+import LoadingSpin from "../components/LoadingSpin";
 
 
 const PrivateRoutes = ({children}) => {
@@ -8,9 +9,7 @@ const PrivateRoutes = ({children}) => {
     const location = useLocation();
 
     if( isLoading ){
-        return <div>
-            <p className="text-3xl font-bold text-center py-20 text-red-500">Loading...</p>
-        </div>
+        return <LoadingSpin />
     }
 
     if(user?.email){

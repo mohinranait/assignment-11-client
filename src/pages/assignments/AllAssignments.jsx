@@ -3,6 +3,7 @@ import useAxios from "../../hooks/useAxios";
 import toast from "react-hot-toast";
 import AssignmentCard from "../../components/AssignmentCard";
 import { useState } from "react";
+import LoadingSpin from "../../components/LoadingSpin";
 
 
 
@@ -19,7 +20,7 @@ const AllAssignments = () => {
         setSelectLevel(e.target.value);
     }
 
-    const {data:assignments} = useQuery({
+    const {data:assignments, isLoading} = useQuery({
         queryKey : ['assignments',selectLevel,currentPage],
         queryFn : async () => {
             try {
@@ -53,6 +54,10 @@ const AllAssignments = () => {
 
     const handleCurrentPage = (currentPage) => {
         setCurrentPage(--currentPage)
+    }
+
+    if(isLoading){
+        return <LoadingSpin />
     }
 
     return (

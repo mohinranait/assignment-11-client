@@ -1,14 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import useAuth from '../../hooks/useAuth';
 import useAxios from '../../hooks/useAxios';
-import { Link } from 'react-router-dom';
 import MySubmitionTableCard from './MySubmitionTableCard';
+import LoadingSpin from '../../components/LoadingSpin';
 
 const MySubmitioni = () => {
     const {user} = useAuth();
     const axios = useAxios();
-    const {data:mySubmites} = useQuery({
+    const {data:mySubmites, isLoading} = useQuery({
         queryKey: ['mySubmites'],
         queryFn: async () => {
             const res = await axios.get(`my-submition?email=${user?.email}`);
@@ -16,6 +15,11 @@ const MySubmitioni = () => {
             return result;
         }
     })
+
+    if(isLoading){
+        return <LoadingSpin />
+    }
+
     return (
         <div className=''>
             <div className='mb-5 flex items-center justify-between'>

@@ -66,10 +66,26 @@ const SubmiteItem = ({item}) => {
                     <p> { email}</p>
                 </td>
                 <td> <button className='btn btn-sm bg-red-50 text-red-500'>{ !status && "Pending"}</button> </td>
+                <td> <button onClick={()=>document.getElementById(`my_preview_${_id}`).showModal()} className='btn btn-sm bg-green-50 text-green-500'>Preview</button> </td>
                 <th>
                     <button onClick={()=>document.getElementById(`my_modal_${_id}`).showModal()} className="btn bg-blue-500 btn-sm text-white hover:text-gray-500">Give mark</button>
                 </th>
             </tr>
+      
+            <dialog id={`my_preview_${_id}`} className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">PDF Link:  </h3>
+                    <div>
+                        
+                    </div>
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
       
             <dialog id={`my_modal_${_id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">

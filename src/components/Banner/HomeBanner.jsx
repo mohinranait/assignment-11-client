@@ -4,13 +4,13 @@ import user2 from "../../assets/images/user/client-05.png"
 import user3 from "../../assets/images/user/client-06.png"
 import banner from "../../assets/images/banner/language-club.png"
 import { HiStar  } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 const HomeBanner = () => {
     return (
         <>
             <div className=" py-16 relative">
-                {/* <div className="w-72 md:w-[700px] blur-3xl -z-10 h-[350px] left-0 bottom-0 bg-blue-100 absolute"></div>
-                <div className="w-72 md:w-[400px] blur-3xl -z-10 h-[300px] right-0 top-0 bg-red-100 absolute"></div> */}
+               
                 <div className="container px-5 ">
                     <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-y-10 lg:gap-y-0 md:gap-5">
                         <div className="order-2 lg:order-1">
@@ -49,18 +49,18 @@ const HomeBanner = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-x-3">
-                                    <a href="#" className=" group w-24 lg:w-[130px] overflow-hidden hover:-translate-y-1 transition-all duration-300 font-semibold text-white  rounded-md">
+                                    <Link to={'/login'} className=" group w-24 lg:w-[130px] overflow-hidden hover:-translate-y-1 transition-all duration-300 font-semibold text-white  rounded-md">
                                         <div className="flex items-center w-[192px] lg:w-[260px] flex-nowrap   bg-gradient-to-l from-blue-500 via-purple-500 to-blue-500  group-hover:-translate-x-[96px] lg:group-hover:-translate-x-[130px] duration-500">
                                             <span className="w-24 text-sm py-3 lg:w-[130px] lg:py-4 lg:text-base   inline-block text-center ">Sign up now</span>
                                             <span className="w-24 text-sm py-3 lg:w-[130px] lg:py-4 lg:text-base   inline-block text-center">Sign up now</span>
                                         </div>
-                                    </a>
-                                    <a href="#" className=" group w-24 lg:w-[130px] overflow-hidden hover:-translate-y-1 transition-all duration-300 font-semibold text-white  rounded-md">
+                                    </Link>
+                                    <Link to={'/dashboard/create-assignment'} className=" group w-24 lg:w-[130px] overflow-hidden hover:-translate-y-1 transition-all duration-300 font-semibold text-white  rounded-md">
                                         <div className="flex items-center w-[192px] lg:w-[260px] flex-nowrap   bg-gradient-to-l from-blue-500 via-blue-500 to-blue-500  group-hover:-translate-x-[96px] lg:group-hover:-translate-x-[130px] duration-500">
                                             <span className="w-24 text-sm py-3 lg:w-[130px] lg:py-4 lg:text-base   inline-block text-center "> Assignment</span>
                                             <span className="w-24 text-sm py-3 lg:w-[130px] lg:py-4 lg:text-base   inline-block text-center"> Assignment</span>
                                         </div>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

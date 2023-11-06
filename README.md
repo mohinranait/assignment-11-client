@@ -1,8 +1,21 @@
-# React + Vite
+# Online group study assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Some project features
+- React and tailwindcss
+- All Device responsive
+- Use Axios and tanStack query 
+- Rest API with Protect route using JWT
+- CRUD Assignment with private route
+- Submit assignment
+- Examieen marks features
+- Authentication user wish assignment getting
+- Display all assignment with pagination and filtering 
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Project links
+- Live Link: https://assignment-11-99dd7.web.app/
+- Github server: https://github.com/Porgramming-Hero-web-course/b8a11-server-side-mohinranait
+
+- Github Client: https://github.com/Porgramming-Hero-web-course/b8a11-client-side-mohinranait
+

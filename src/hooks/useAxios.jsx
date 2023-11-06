@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 const instance = axios.create({
     baseURL : "http://localhost:5000/api/v1",
+    // baseURL : "https://assignment-11-server-seven-amber.vercel.app/api/v1",
     withCredentials : true,
 })
 

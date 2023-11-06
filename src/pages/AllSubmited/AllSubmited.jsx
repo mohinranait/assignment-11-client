@@ -2,10 +2,11 @@
 import SubmiteItem from './SubmiteItem';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
+import LoadingSpin from '../../components/LoadingSpin';
 
 const AllSubmited = () => {
     const axios = useAxios();
-    const {data:pendingSubmiteds} = useQuery({
+    const {data:pendingSubmiteds, isLoading} = useQuery({
         queryKey: ['pendingSubmited'],
         queryFn : async () => {
             const res = await axios.get(`/pending-submitions`);
@@ -13,6 +14,11 @@ const AllSubmited = () => {
             return result; 
         }
     })
+
+    if(isLoading){
+        return <LoadingSpin />
+    }
+
     return (
         <section>
             <div className="container px-5 lg:px-0 my-16  ">
@@ -25,6 +31,7 @@ const AllSubmited = () => {
                                 <th>Submition</th>
                                 <th>Examinee</th>
                                 <th>Status</th>
+                                <th>Preview</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
