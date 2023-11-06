@@ -5,6 +5,7 @@ import { IoPencilSharp, IoTrashOutline } from 'react-icons/io5';
 import useAxios from '../../hooks/useAxios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const AssignmentTableCard = ({assignment}) => {
     const {user} = useAuth();
@@ -18,9 +19,11 @@ const AssignmentTableCard = ({assignment}) => {
             const res = await axios.delete(`/delete-my-assign/${_id}?email=${user?.email}`)
             const result = await res.data;
             if(result.deletedCount > 0){
-                swal("Your assignment has been deleted!", {
+                swal("Assignment has been deleted!", {
                     icon: "success",
                 });
+            }else{
+                toast.error("You cannot delete it.")
             }
         },
         onSuccess : () =>{

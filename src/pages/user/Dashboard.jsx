@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { IoAppsSharp, IoLogOutOutline } from 'react-icons/io5';
 import { HiOutlineBookmark, HiOutlineSquares2X2 } from 'react-icons/hi2';
+import { FaThList } from "react-icons/fa";
 
 const Dashboard = () => {
     const {logout} = useAuth();
@@ -18,6 +19,7 @@ const Dashboard = () => {
                             <li><NavLink to={'/dashboard'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <IoAppsSharp></IoAppsSharp> Account</NavLink></li>
                             <li><NavLink to={'/dashboard/create-assignment'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <HiOutlineBookmark></HiOutlineBookmark> Add Assignment </NavLink></li>
                             <li><NavLink to={'/dashboard/assignment-lists'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <HiOutlineSquares2X2 />All Assignment </NavLink></li>
+                            <li><NavLink to={'/dashboard/my-submition'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <FaThList /> My Submition </NavLink></li>
 
                           
                             <li onClick={handleLogout} ><a className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <IoLogOutOutline></IoLogOutOutline> Logout</a></li>

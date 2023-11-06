@@ -2,20 +2,23 @@
 import toast from 'react-hot-toast';
 import useAxios from '../../hooks/useAxios';
 import { useMutation } from '@tanstack/react-query';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const UpdateAssignment = () => {
     const getAsmt= useLoaderData();
-    console.log(getAsmt);
+    const {user} = useAuth();
     const axios = useAxios();
+    const navigate = useNavigate();
 
     const {mutate} = useMutation({
         mutationFn: async (assignment) => {
             try {
-                const res = await axios.patch(`/update-assignment/${getAsmt?._id}`, assignment);
+                const res = await axios.patch(`/update-assignment/${getAsmt?._id}?email=${user?.email}`, assignment);
                 const result = await res.data;
                 if( result.modifiedCount > 0 ){
                     toast.success("Assignment Update successfull");
+                    navigate("/dashboard/assignment-lists")
                 }else{
                     toast.error("Please! Modify your data")
                 }

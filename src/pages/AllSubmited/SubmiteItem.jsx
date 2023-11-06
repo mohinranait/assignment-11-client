@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
+import { Link } from 'react-router-dom';
 
 const SubmiteItem = ({item}) => {
     const queryClient = useQueryClient();
     const axios = useAxios();
-    const {_id,status, thumnail,title,marks,pdf,level,note } = item || {};
+    const {_id,status, thumnail,title,marks,pdf,level,note,examinName,email } = item || {};
 
     const {mutate:udpateSubmited} = useMutation({
         mutationFn: async (examinMark) => {
@@ -51,6 +52,7 @@ const SubmiteItem = ({item}) => {
                         <div>
                             <div className="font-bold">{title}</div>
                             <div className="text-sm opacity-50">Level: {level}</div>
+                            <div className="text-sm opacity-50">Marks: {marks}</div>
                         </div>
                     </div>
                 </td>
@@ -59,16 +61,20 @@ const SubmiteItem = ({item}) => {
                     <br/>
                     <span className="badge badge-ghost badge-sm">{note}</span>
                 </td>
-                <td>Marks: {marks}</td>
+                <td>
+                    <p> {examinName }</p>
+                    <p> { email}</p>
+                </td>
                 <td> <button className='btn btn-sm bg-red-50 text-red-500'>{ !status && "Pending"}</button> </td>
                 <th>
-                    <button onClick={()=>document.getElementById('my_modal_5').showModal()} className="btn bg-blue-500 btn-sm text-white hover:text-gray-500">Give mark</button>
+                    <button onClick={()=>document.getElementById(`my_modal_${_id}`).showModal()} className="btn bg-blue-500 btn-sm text-white hover:text-gray-500">Give mark</button>
                 </th>
             </tr>
       
-            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+            <dialog id={`my_modal_${_id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <h3 className="font-bold text-lg">PDF Link: <Link to={pdf} className='text-blue-600'>Click</Link> </h3>
+                    <h3 className="font-medium text-base">Note: <span className='text-gray-500  font-normal'>{note}</span> </h3>
                     <form onSubmit={handleExeminer} >
                         <div className="form-control mb-4">
                             <label className="label">

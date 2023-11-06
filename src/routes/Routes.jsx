@@ -12,6 +12,7 @@ import AllAssignment from "../pages/user/AllAssignment";
 import Account from "../pages/user/Account";
 import Details from "../pages/Details/Details";
 import AllSubmited from "../pages/AllSubmited/AllSubmited";
+import MySubmitioni from "../pages/user/MySubmitioni";
 
 const myRoutes = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ const myRoutes = createBrowserRouter([
             },
             {
                 path : '/all-submited',
-                element : <AllSubmited />,
+                element : <PrivateRoutes><AllSubmited /></PrivateRoutes> ,
             },
             {
                 path : '/assignments/:id',
@@ -65,6 +66,10 @@ const myRoutes = createBrowserRouter([
                     {
                         path : 'assignment-lists',
                         element : <AllAssignment />
+                    },
+                    {
+                        path : 'my-submition',
+                        element : <MySubmitioni />
                     },
                 ]
             },

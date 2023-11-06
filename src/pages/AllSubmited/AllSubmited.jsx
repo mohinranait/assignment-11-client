@@ -23,7 +23,7 @@ const AllSubmited = () => {
                             <tr>
                                 <th>Assignment</th>
                                 <th>Submition</th>
-                                <th>Marks</th>
+                                <th>Examinee</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>

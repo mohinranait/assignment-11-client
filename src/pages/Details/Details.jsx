@@ -12,6 +12,7 @@ import useAxios from '../../hooks/useAxios';
 const Details = () => {
     const navigate = useNavigate();
     const {user} = useAuth();
+
     const axios = useAxios();
     const course = useLoaderData();
     const {title, thumnail, marks, level,description,date} = course || {};
@@ -23,6 +24,7 @@ const Details = () => {
                 const result = await res.data;
                 if( result.insertedId ){
                     toast.success("Successfully submited");
+                    navigate('/all-submited')
                 }else{
                     toast.error("Somthing wrong")
                 }
@@ -40,7 +42,8 @@ const Details = () => {
         const note = form.note.value;
         const status = false;
         const email = user?.email;
-        const submission = {pdf,note,status,email,title,level, marks, thumnail};
+        const examinName = user?.displayName || user?.email;
+        const submission = {pdf,note,status,examinName,email,title,level, marks, thumnail};
 
 
         try {
@@ -166,7 +169,7 @@ const Details = () => {
 
             <dialog id="my_modal_4" className="modal">
                 <div className="modal-box lg:w-1/2 max-w-5xl">
-                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <h3 className="font-bold text-lg">{title}</h3>
                     <form onSubmit={handleSubmision} >
                         <div className="form-control mb-4">
                             <label className="label">
