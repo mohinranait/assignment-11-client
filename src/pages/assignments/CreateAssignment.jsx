@@ -31,7 +31,7 @@ const CreateAssignment = () => {
 
         const title = form.title.value;
         const marks = Number(form.marks.value);
-        const level = form.level.value;
+        const level = form.level.value || 'easy';
         const description = form.description.value;
         const thumnail = form.thumnail.value;
         const date = form.date.value;
@@ -113,7 +113,7 @@ const CreateAssignment = () => {
                                 <label className="label">
                                     <span className="label-text">Description</span>
                                 </label>
-                                <textarea name="description" id="" cols="30" className="input input-bordered py-2" rows="5"></textarea>
+                                <textarea name="description" required id="" cols="30" className="input input-bordered py-2" rows="5"></textarea>
                             </div>
                         </div>
                        

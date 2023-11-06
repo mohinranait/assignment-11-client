@@ -1,11 +1,11 @@
 import PropTypes from "prop-types"
-import { HiBars3CenterLeft, HiOutlineSquares2X2 } from 'react-icons/hi2';
+import { HiBars3CenterLeft, HiOutlineBookmark, HiOutlineSquares2X2 } from 'react-icons/hi2';
 import HomeBanner from '../../components/Banner/HomeBanner';
 import Logo from '../../components/Logo';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { IoLogOutOutline } from 'react-icons/io5';
 import useAuth from '../../hooks/useAuth';
-import { FaThLarge } from "react-icons/fa";
+import { FaThLarge, FaThList } from "react-icons/fa";
 import "./Header.css"
 
 const Header = ({toggleMobileMenu}) => {
@@ -58,7 +58,9 @@ const Header = ({toggleMobileMenu}) => {
                                                 <p className='text-center text-sm font-medium text-gray-400'>{user?.email}</p>
                                             </li>
                                             <li className='px-4 py-2'><Link to={'/dashboard'} className='flex items-center gap-2'> <FaThLarge /> Dashboard</Link></li>
+                                            <li className='px-4 py-2'><Link to={'/dashboard/create-assignment'} className='flex items-center gap-2'> <HiOutlineBookmark /> Create assignment</Link></li>
                                             <li className='px-4 py-2'><Link to={'/dashboard/assignment-lists'} className='flex items-center gap-2'> <HiOutlineSquares2X2 /> My Assignment</Link></li>
+                                            <li className='px-4 py-2'><Link to={'/dashboard/my-submition'} className='flex items-center gap-2'> <FaThList /> My Submited</Link></li>
                                             <li className='px-4 py-2'><button onClick={handleLogout} className='flex items-center gap-2'> <IoLogOutOutline /> Logout</button></li>
                                         </ul>
                                     </div>

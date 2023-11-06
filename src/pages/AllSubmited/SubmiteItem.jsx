@@ -89,7 +89,7 @@ const SubmiteItem = ({item}) => {
       
             <dialog id={`my_modal_${_id}`} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">PDF Link: <Link to={pdf} className='text-blue-600'>Click</Link> </h3>
+                    <h3 className="font-bold text-base">PDF Link: <a rel={'_blank'}  href={`${pdf}`} className='text-blue-600 text-sm'>{pdf}</a> </h3>
                     <h3 className="font-medium text-base">Note: <span className='text-gray-500  font-normal'>{note}</span> </h3>
                     <form onSubmit={handleExeminer} >
                         <div className="form-control mb-4">

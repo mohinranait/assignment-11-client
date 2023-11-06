@@ -1,5 +1,5 @@
 
-import {  Outlet } from "react-router-dom";
+import {  Link, Outlet } from "react-router-dom";
 import {  HiMiniXMark } from "react-icons/hi2";
 import Header from "../shared/Header/Header";
 import { useState } from "react";
@@ -7,111 +7,31 @@ import Logo from "../components/Logo";
 
 import SocialLinks from "../components/SocilaLinks/SocialLinks";
 import { Toaster } from "react-hot-toast";
+import Footer from "../shared/Footer/Footer";
+import useAuth from "../hooks/useAuth";
 
 const MainLayout = () => {
-    
+    const {user,logout} = useAuth();
     const [isToggle, setIsToggle] = useState(false);
 
     const toggleMobileMenu = () => {
         setIsToggle(!isToggle)
     }
 
+    const handleLogout = async () => {
+        await logout();
+    }
+
 
     return (
         <>
 
-         <Header toggleMobileMenu={toggleMobileMenu} /> 
+            <Header toggleMobileMenu={toggleMobileMenu} /> 
          
             <Outlet />
             <Toaster />
 
-            <footer className="bg-white">
-                <div className="py-20">
-                    <div className="container px-5 lg:px-0">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 lg:grid-cols-12">
-                            <div className="col-span-1 lg:col-span-4">
-                                <ul className="space-y-5">
-                                    <li>
-                                       <Logo />
-                                    </li>
-                                    <li>
-                                        <p className="text-gray-500">We’re always in search for talented and motivated people. Don’t be shy introduce yourself!</p>
-                                    </li>
-                                    <li className="flex justify-start">
-                                        <SocialLinks />
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="col-span-1 lg:col-span-2">
-                                <ul className="space-y-3">
-                                    <li className="text-xl text-dark font-extrabold ">Useful Links</li>
-                                    <li>
-                                        <ul className="space-y-2">
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">Marketplace</a></li>
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">University</a></li>
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">Blogs</a></li>
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">FAQ</a></li>
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">About Us</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="col-span-1 lg:col-span-2">
-                                <ul className="space-y-3">
-                                    <li className="text-xl text-dark font-extrabold ">Our Company</li>
-                                    <li>
-                                        <ul className="space-y-2">
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">Become Teacher</a></li>
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">Register</a></li>
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">Login</a></li>
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">Dashboard</a></li>
-                                            <li><a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 transition-all duration-300 hover:pl-1" href="#">Contact</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="col-span-1 lg:col-span-4">
-                                <ul className="space-y-3">
-                                    <li className="text-xl text-dark font-extrabold ">Get Contact</li>
-                                    <li>
-                                        <ul className="">
-                                            <li className="flex items-center gap-x-2 text-gray-500">
-                                                <span className="font-bold">Phone:</span>
-                                                <a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 " href="tel:01728068200">01728068200</a>
-                                            </li>
-                                            <li className="flex items-center gap-x-2 text-gray-500">
-                                                <span className="font-bold">E-mail:</span>
-                                                <a className="text-base  py-1 font-medium text-gray-500 hover:text-blue-700 " href="#">admin@example.com</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul className="space-y-3">
-                                    <li className="text-lg text-gray-700 font-extrabold ">Newsletter</li>
-                                    <li>
-                                        <ul className="space-y-3">
-                                            <li className="text-gray-600">2000+ Our students are subscribe Around the World. <br />   Don’t be shy introduce yourself!</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="container px-5 lg:px-0 border-t border-gray-200 py-5">
-                        <div className="flex flex-col items-center justify-center lg:justify-between gap-y-3 lg:flex-row  ">
-                            <p className="text-gray-600 text-center">Copyright © 2023 <a href="#" className="text-gray-950 hover:text-blue-700">Mohin Rana</a>. All Rights Reserved</p>
-                            <ul className="flex flex-wrap items-center justify-center text-gray-600 ">
-                                <li className="px-2"><a className="text-base font-medium hover:text-blue-700" href="#">Terms of service</a></li> | 
-                                <li className="px-2"><a className="text-base font-medium hover:text-blue-700" href="#">Privacy policy</a></li> |
-                                <li className="px-2"><a className="text-base font-medium hover:text-blue-700" href="#">Subscription</a></li> |
-                                <li className="px-2"><a className="text-base font-medium hover:text-blue-700" href="#">Login & Register</a></li> 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
 
 
             <div className="lg:hidden">
@@ -140,15 +60,23 @@ const MainLayout = () => {
                             </li>
                             <li className="flex-grow">
                                 <ul>
-                                    <li className="border-b border-gray-200"><a className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 " href="#">Home</a></li>
-                                    <li className="border-b border-gray-200"><a className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 " href="#">About</a></li>
-                                   
+                                    <li className="border-b border-gray-200"><Link to={'/'} className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 ">Home</Link></li>
+                                    <li className="border-b border-gray-200"><Link to={'/assignment'} className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 ">Assignments</Link></li>
+                                    <li className="border-b border-gray-200"><Link to={'/all-submited'} className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 ">All Submited</Link></li>
+                                    <li className="border-b border-gray-200"><Link to={'/dashboard/assignment-lists'} className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 ">My assignment</Link></li>
+                                    <li className="border-b border-gray-200"><Link to={'/dashboard/my-submition'} className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 ">My submited</Link></li>
+                                    {
+                                        user?.email ? <> <li className="border-b border-gray-200"><button onClick={handleLogout} className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 ">Logout</button></li></> : <>
+                                            <li className="border-b border-gray-200"><Link to={'/login'} className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 ">Login</Link></li>
+                                            <li className="border-b border-gray-200"><Link to={'/register'} className="text-gray-800 text-lg hover:text-blue-700 py-1 inline-block transition-all duration-300 ">Register</Link></li>
+                                        </>
+                                    }
                                 </ul>
                             </li>
                             <li className="mt-auto">
-                                <a href="#" className="w-full inline-block text-center  rounded-[50px] p-[3px] group  bg-gradient-to-l from-pink-600 to-blue-600 hover:text-white">
-                                    <span className="w-full h-full inline-block  py-3 bg-white rounded-3xl group-hover:bg-gradient-to-l group-hover:from-pink-600 group-hover:to-blue-600 font-bold transition-all duration-500">Enroll now</span>
-                                </a>
+                                <Link to={'/dashboard/create-assignment'} className="w-full inline-block text-center  rounded-[50px] p-[3px] group  bg-gradient-to-l from-pink-600 to-blue-600 hover:text-white">
+                                    <span className="w-full h-full inline-block  py-3 bg-white rounded-3xl group-hover:bg-gradient-to-l group-hover:from-pink-600 group-hover:to-blue-600 font-bold transition-all duration-500">Create assignment</span>
+                                </Link>
                             </li>
                             <li>
                                 <SocialLinks />
