@@ -13,12 +13,13 @@ import Account from "../pages/user/Account";
 import Details from "../pages/Details/Details";
 import AllSubmited from "../pages/AllSubmited/AllSubmited";
 import MySubmitioni from "../pages/user/MySubmitioni";
+import NotFound from "../pages/NotFound/NotFound";
 
 const myRoutes = createBrowserRouter([
     {
         path : "/",
         element : <App />,
-        errorElement : <div>Error page</div>,
+        errorElement : <NotFound /> ,
         children : [
             {
                 path : '/',
