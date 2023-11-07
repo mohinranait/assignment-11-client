@@ -18,8 +18,8 @@ const Dashboard = () => {
                         <ul className='border divide-y divide-gray-200 border-gray-200 rounded-md '>
                             <li><NavLink to={'/dashboard'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <IoAppsSharp></IoAppsSharp> Account</NavLink></li>
                             <li><NavLink to={'/dashboard/create-assignment'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <HiOutlineBookmark></HiOutlineBookmark> Add Assignment </NavLink></li>
-                            <li><NavLink to={'/dashboard/assignment-lists'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <HiOutlineSquares2X2 />All Assignment </NavLink></li>
-                            <li><NavLink to={'/dashboard/my-submition'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <FaThList /> My submitted </NavLink></li>
+                            <li><NavLink to={'/dashboard/assignment-lists'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <HiOutlineSquares2X2 />Assignment Lists </NavLink></li>
+                            <li><NavLink to={'/dashboard/my-submition'} className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <FaThList /> My Assignment </NavLink></li>
 
                           
                             <li onClick={handleLogout} ><a className=' px-5 py-3 font-medium text-secondary flex items-center gap-2 dark:text-gray-400' > <IoLogOutOutline></IoLogOutOutline> Logout</a></li>

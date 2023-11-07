@@ -18,7 +18,7 @@ const UpdateAssignment = () => {
     const {mutate} = useMutation({
         mutationFn: async (assignment) => {
             try {
-                const res = await axios.patch(`/update-assignment/${getAsmt?._id}?email=${user?.email}`, assignment);
+                const res = await axios.patch(`/update-assignment/${getAsmt?._id}?email=${user?.email}&productEmail=${getAsmt?.email}`, assignment);
                 const result = await res.data;
                 if( result.modifiedCount > 0 ){
                     toast.success("Assignment Update successfull");
@@ -44,11 +44,14 @@ const UpdateAssignment = () => {
         const thumnail = form.thumnail.value;
         const datee = date || getAsmt?.date;
         const features = form.features.value == 'true' ? true : false;
-        // const email = getAsmt?.email
         const assignment = {title, marks, features, level, description, thumnail, date:datee};
 
         try {
-            mutate(assignment)
+            if( user?.email !== getAsmt?.email ){
+                toast.error("You do not own this product")
+            }else{
+                mutate(assignment)
+            }
         } catch (error) {
             toast.error(error.message)
         }
@@ -60,6 +63,11 @@ const UpdateAssignment = () => {
                 <div className='bg-white  px-8 py-10 '>
                     <form onSubmit={handleSubmitAssignment}>
                         <p className='text-2xl font-semibold text-gray-700'>Update assignment</p>
+                        <div className='flex mt-4'>
+                            <div className='border rounded-md p-2'>
+                                <img className='w-24 rounded' src={getAsmt?.thumnail} alt="" />
+                            </div>
+                        </div>
                         <div className="grid grid-cols-1 gap-5 mb-4">
                             <div className="form-control">
                                 <label className="label">

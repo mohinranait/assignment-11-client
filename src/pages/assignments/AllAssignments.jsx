@@ -10,7 +10,7 @@ import LoadingSpin from "../../components/LoadingSpin";
 const AllAssignments = () => {
     const axios = useAxios();
     const [selectLevel, setSelectLevel] = useState('');
-    const [parPage, setParPage] = useState(10)
+    const [parPage, setParPage] = useState(4)
     const [currentPage, setCurrentPage] = useState(0);
 
   

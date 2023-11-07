@@ -11,12 +11,12 @@ const AssignmentTableCard = ({assignment}) => {
     const {user} = useAuth();
     const queryClient = useQueryClient()
     const axios = useAxios();
-    const {_id,title,marks,level,features} = assignment || {};
+    const {_id,title,marks,level,thumnail} = assignment || {};
 
 
     const {mutate:deleteMyAssignment} = useMutation({
         mutationFn: async (_id) => {
-            const res = await axios.delete(`/delete-my-assign/${_id}?email=${user?.email}`)
+            const res = await axios.delete(`/delete-my-assign/${_id}?email=${user?.email}&assemail=${assignment?.email}`)
             const result = await res.data;
             if(result.deletedCount > 0){
                 swal("Assignment has been deleted!", {
@@ -50,7 +50,7 @@ const AssignmentTableCard = ({assignment}) => {
     return (
         <>
             <tr >
-                <td className='border border-slate-200 px-3 py-2 text-gray-600 '>{title} , {features} </td>
+                <td className='border border-slate-200 px-3 py-2 text-gray-600 flex gap-2'> <img src={thumnail} className='w-10' alt="" /> {title}  </td>
                 <td className='border border-slate-200 px-3 py-2 text-gray-600 '>{marks}</td>
                 <td className='border border-slate-200 px-3 py-2 text-gray-600 capitalize'>{level}</td>
                 <td className='border border-slate-200 px-3 py-2 text-gray-600 '>

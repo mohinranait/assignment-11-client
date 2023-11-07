@@ -3,12 +3,32 @@ import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
-import { Link } from 'react-router-dom';
+import { Page, Text, View, Document, StyleSheet ,PDFViewer} from '@react-pdf/renderer';
+
+
+
+const styles = StyleSheet.create({
+    page: {
+      flexDirection: 'row',
+      backgroundColor: '#E4E4E4'
+    },
+    section: {
+      margin: 10,
+      padding: 10,
+      flexGrow: 1
+    },
+    pdf: {
+      color: 'blue',
+    },
+});
 
 const SubmiteItem = ({item}) => {
     const queryClient = useQueryClient();
     const axios = useAxios();
     const {_id,status, thumnail,title,marks,pdf,level,note,examinName,email } = item || {};
+
+
+
 
     const {mutate:udpateSubmited} = useMutation({
         mutationFn: async (examinMark) => {
@@ -72,11 +92,25 @@ const SubmiteItem = ({item}) => {
                 </th>
             </tr>
       
-            <dialog id={`my_preview_${_id}`} className="modal modal-bottom sm:modal-middle">
+            <dialog id={`my_preview_${_id}`} className="modal  modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">PDF Link:  </h3>
                     <div>
-                        
+                        <PDFViewer>
+                            <Document>
+                                <Page size="A4" style={styles.page}>
+                                    <View style={styles.section}>
+                                        <Text>{title}</Text>
+                                        <Text style={styles.pdf}>PDF: {pdf}</Text>
+                                        <Text>Marks: {marks}</Text>
+                                        <Text>Level: {level}</Text>
+                                        <Text>Examinee Name: {examinName}</Text>
+                                        <Text>Examinee Email: {email}</Text>
+                                        <Text>Note: {note}</Text>
+                                    </View>
+                                </Page>
+                            </Document>
+                        </PDFViewer>
                     </div>
                     <div className="modal-action">
                         <form method="dialog">

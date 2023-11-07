@@ -37,8 +37,8 @@ const Header = ({toggleMobileMenu}) => {
                                     <li><NavLink to={'/all-submited'} className="text-base px-3 py-1 font-medium" >all submited</NavLink></li>
                                     {
                                         user?.email ? <>
-                                        <li><Link to="/dashboard/assignment-lists" className="text-base px-3 py-1 font-medium" >My assignments</Link></li>
-                                        <li><Link to="/dashboard/my-submition" className="text-base px-3 py-1 font-medium" >My submited</Link></li>
+                                        <li><Link to="/dashboard/assignment-lists" className="text-base px-3 py-1 font-medium" >My List</Link></li>
+                                        <li><Link to="/dashboard/my-submition" className="text-base px-3 py-1 font-medium" >My assignment</Link></li>
                                         <li><button onClick={handleLogout} className="text-base px-3 py-1 font-medium" >Logout</button></li>
                                         </> : <>
                                         <li><NavLink to={'/login'} className="text-base px-3 py-1 font-medium" >Login</NavLink></li>
@@ -59,8 +59,8 @@ const Header = ({toggleMobileMenu}) => {
                                             </li>
                                             <li className='px-4 py-2'><Link to={'/dashboard'} className='flex items-center gap-2'> <FaThLarge /> Dashboard</Link></li>
                                             <li className='px-4 py-2'><Link to={'/dashboard/create-assignment'} className='flex items-center gap-2'> <HiOutlineBookmark /> Create assignment</Link></li>
-                                            <li className='px-4 py-2'><Link to={'/dashboard/assignment-lists'} className='flex items-center gap-2'> <HiOutlineSquares2X2 /> My Assignment</Link></li>
-                                            <li className='px-4 py-2'><Link to={'/dashboard/my-submition'} className='flex items-center gap-2'> <FaThList /> My Submited</Link></li>
+                                            <li className='px-4 py-2'><Link to={'/dashboard/assignment-lists'} className='flex items-center gap-2'> <HiOutlineSquares2X2 />  Assignment List</Link></li>
+                                            <li className='px-4 py-2'><Link to={'/dashboard/my-submition'} className='flex items-center gap-2'> <FaThList /> My Assignment</Link></li>
                                             <li className='px-4 py-2'><button onClick={handleLogout} className='flex items-center gap-2'> <IoLogOutOutline /> Logout</button></li>
                                         </ul>
                                     </div>
