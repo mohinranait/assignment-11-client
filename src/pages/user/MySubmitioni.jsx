@@ -35,6 +35,7 @@ const MySubmitioni = () => {
                                 <th className='border border-slate-200 text-left text-gray-700 py-2 pl-3'>My Marks</th>
                                 <th className='border border-slate-200 text-left text-gray-700 py-2 pl-3'>Level</th>
                                 <th className='border border-slate-200 text-left text-gray-700 py-2 pl-3'>Status</th>
+                                <th className='border border-slate-200 text-left text-gray-700 py-2 pl-3'>Action</th>
                             </tr>
                         </thead>
                         <tbody>

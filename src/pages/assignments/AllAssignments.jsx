@@ -63,7 +63,7 @@ const AllAssignments = () => {
     return (
         <section>
             <div className="container px-5 lg:px-0">
-                <div className="flex justify-between items-center py-3 bg-white rounded-md mt-16 mb-6 shadow px-5">
+                <div className="flex flex-col sm:flex-row gap-3 justify-between items-center py-3 bg-white rounded-md mt-16 mb-6 shadow px-5">
                     <div className="font-medium">
                         Total <span className="font-semibold">{totalAssignment}</span> - view <span className="font-semibold">{assignments?.result?.length}</span> assignments
                     </div>

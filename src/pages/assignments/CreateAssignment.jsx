@@ -63,7 +63,7 @@ const CreateAssignment = () => {
     return (
         <section>
             <div className="container px-5 lg:px-0">
-                <div className='bg-white  px-8 py-10'>
+                <div className='bg-white  md:px-8 md:py-10'>
                     <form onSubmit={handleSubmitAssignment}>
                         <p className='text-2xl font-semibold text-gray-700'>Crate new assignment</p>
                         <div className="grid grid-cols-1 gap-5 mb-4">

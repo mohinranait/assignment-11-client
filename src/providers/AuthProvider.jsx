@@ -56,7 +56,6 @@ const AuthProvider = ({children}) => {
                 .then(res => {
                     console.log(res.data);
                 });
-                // console.log(currentUser);
             }else{
                 axios.post("/logout", {email})
                 .then(res => {
