@@ -38,40 +38,37 @@ const Home = () => {
             </section>
             <section>
                 <div className="container px-5 lg:px-0">
-                    <div className="pb-10 pt-10">
-                        <p className="text-3xl font-bold text-center">Features assignments</p>
-                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <div>
-                                <p className="text-2xl font-bold mb-3">What is Question</p>
+                                <p className="text-2xl font-bold mb-3">FAQ</p>
                             </div>
                             <div className="space-y-4">
                                 <div className="collapse collapse-plus bg-base-200">
                                     <input type="radio" name="my-accordion-3" checked="checked" /> 
                                     <div className="collapse-title text-xl font-medium">
-                                        Click to open this one and close others
+                                        What should be submitted in the assignment?
                                     </div>
                                     <div className="collapse-content"> 
-                                        <p>hello</p>
+                                        <p>You must provide a Google Drive PDF link to submit the assignment. And you can add your quick note if you want.</p>
                                     </div>
                                 </div>
                                 <div className="collapse collapse-plus bg-base-200">
                                     <input type="radio" name="my-accordion-3" /> 
                                     <div className="collapse-title text-xl font-medium">
-                                        Click to open this one and close others
+                                        What are the benefits here?
                                     </div>
                                     <div className="collapse-content"> 
-                                        <p>hello</p>
+                                        <p>You can publish an assignment from your account and share it with your friends. You can explore your confidence level.</p>
                                     </div>
                                 </div>
                                 <div className="collapse collapse-plus bg-base-200">
                                     <input type="radio" name="my-accordion-3" /> 
                                     <div className="collapse-title text-xl font-medium">
-                                        Click to open this one and close others
+                                        Can I login with email?
                                     </div>
                                     <div className="collapse-content"> 
-                                        <p>hello</p>
+                                        <p>hey You can login via email.</p>
                                     </div>
                                 </div>
                             </div>

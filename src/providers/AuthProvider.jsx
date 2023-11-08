@@ -52,16 +52,16 @@ const AuthProvider = ({children}) => {
             setUser(currentUser);
             setIsLoading(false);
             if(email){
-                 axios.post(`/jwt`, {email})
-                 .then(res => {
+                axios.post(`/jwt`, {email})
+                .then(res => {
                     console.log(res.data);
-                 });
-                console.log(currentUser);
+                });
+                // console.log(currentUser);
             }else{
-                 axios.post("/logout", {email})
-                 .then(res => {
+                axios.post("/logout", {email})
+                .then(res => {
                     console.log(res.data);
-                 });
+                });
                 console.log("user ni");
             }
         });

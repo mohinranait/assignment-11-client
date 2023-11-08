@@ -11,16 +11,12 @@ const instance = axios.create({
 const useAxios = () => {
     const {logout} = useAuth();
     
-
     useEffect(() => {
         instance.interceptors.response.use(response => {
             return response;
-        }, async error => {
-            console.log(error);
+        },  error => {
             if( error.response.status === 401 || error.response.status === 403 ){
-                // Logout
-                console.log("inside if block");
-                // await logout()
+                
                 logout()
                 .then(res => res.json())
                 .then(data=>{
