@@ -36,7 +36,7 @@ const myRoutes = createBrowserRouter([
             {
                 path : '/assignments/:id',
                 element : <PrivateRoutes><Details /></PrivateRoutes> ,
-                loader : async ({params}) => await fetch(`https://assignment-11-server-seven-amber.vercel.app/api/v1/assignment/${params.id}`)
+                loader : async ({params}) => await fetch(`http://localhost:5000/api/v1/assignment/${params.id}`)
             },
             {
                 path : '/create-assignment',
@@ -45,7 +45,7 @@ const myRoutes = createBrowserRouter([
             {
                 path : '/update-assignment/:id',
                 element : <PrivateRoutes><UpdateAssignment /></PrivateRoutes> ,
-                loader : async ({params}) => await fetch(`https://assignment-11-server-seven-amber.vercel.app/api/v1/assignment/${params.id}`)
+                loader : async ({params}) => await fetch(`http://localhost:5000/api/v1/assignment/${params.id}`)
             },
             {
                 path : "/dashboard",
@@ -62,7 +62,7 @@ const myRoutes = createBrowserRouter([
                     {
                         path : 'update-assignment/:id',
                         element : <UpdateAssignment />,
-                        loader : async ({params}) => await fetch(`https://assignment-11-server-seven-amber.vercel.app/api/v1/assignment/${params.id}`)
+                        loader : async ({params}) => await fetch(`http://localhost:5000/api/v1/assignment/${params.id}`)
                     },
                     {
                         path : 'assignment-lists',

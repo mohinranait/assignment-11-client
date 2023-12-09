@@ -3,26 +3,36 @@ import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
-import { Page, Text, View, Document, StyleSheet ,PDFViewer} from '@react-pdf/renderer';
+// import { Page, Text, View, Document, StyleSheet ,PDFViewer} from '@react-pdf/renderer';
 
+// import { pdfjs } from 'react-pdf';
+import { useState } from 'react';
 
+import { Document, Page } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 
-const styles = StyleSheet.create({
-    page: {
-      flexDirection: 'row',
-      backgroundColor: '#E4E4E4'
-    },
-    section: {
-      margin: 10,
-      padding: 10,
-      flexGrow: 1
-    },
-    pdf: {
-      color: 'blue',
-    },
-});
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url,
+).toString();
+
+const options = {
+    cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
+  };
+
 
 const SubmiteItem = ({item}) => {
+
+    const [numPages, setNumPages] = useState();
+    const [pageNumber, setPageNumber] = useState(1);
+  
+    function onDocumentLoadSuccess({ numPages }){
+      setNumPages(numPages);
+    }
+
+
     const queryClient = useQueryClient();
     const axios = useAxios();
     const {_id,status, thumnail,title,marks,pdf,level,note,examinName,email } = item || {};
@@ -96,21 +106,9 @@ const SubmiteItem = ({item}) => {
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">PDF Link:  </h3>
                     <div>
-                        <PDFViewer>
-                            <Document>
-                                <Page size="A4" style={styles.page}>
-                                    <View style={styles.section}>
-                                        <Text>{title}</Text>
-                                        <Text style={styles.pdf}>PDF: {pdf}</Text>
-                                        <Text>Marks: {marks}</Text>
-                                        <Text>Level: {level}</Text>
-                                        <Text>Examinee Name: {examinName}</Text>
-                                        <Text>Examinee Email: {email}</Text>
-                                        <Text>Note: {note}</Text>
-                                    </View>
-                                </Page>
-                            </Document>
-                        </PDFViewer>
+                    <Document file="somefile.pdf" options={options} onLoadSuccess={onDocumentLoadSuccess}>
+                        <Page pageNumber={pageNumber} />
+                    </Document>
                     </div>
                     <div className="modal-action">
                         <form method="dialog">

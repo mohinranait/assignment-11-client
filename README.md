@@ -10,12 +10,11 @@
 - Examieen marks features
 - Authentication user wish assignment getting
 - Display all assignment with pagination and filtering 
+- This website is made for those who can do assignments with a group. Some friends can account. They can submit their study assignments here. he can submit assignments here. One can view one's assignments and give marks with feedback. Everyone can approve assignments with feedback.
 
 
 
 ## Project links
 - Live Link: https://assignment-11-99dd7.web.app/
-- Github server: https://github.com/Porgramming-Hero-web-course/b8a11-server-side-mohinranait
 
-- Github Client: https://github.com/Porgramming-Hero-web-course/b8a11-client-side-mohinranait
 
