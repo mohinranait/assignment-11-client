@@ -41,10 +41,11 @@ const UpdateAssignment = () => {
         const marks = Number(form.marks.value);
         const level = form.level.value || getAsmt?.level;
         const description = form.description.value;
+        const duration = form.duration.value;
         const thumnail = form.thumnail.value;
         const datee = date || getAsmt?.date;
         const features = form.features.value == 'true' ? true : false;
-        const assignment = {title, marks, features, level, description, thumnail, date:datee};
+        const assignment = {title, marks, features,duration, level, description, thumnail, date:datee};
 
         try {
             if( user?.email !== getAsmt?.email ){
@@ -83,6 +84,26 @@ const UpdateAssignment = () => {
                                     <span className="label-text">Thumnail</span>
                                 </label>
                                 <input type="text" name='thumnail' defaultValue={getAsmt.thumnail} placeholder="thumnail" className="input input-bordered" required />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-5 mb-4">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Complate Duration</span>
+                                </label>
+                                <select name="duration" id="" className="input input-bordered">
+                                    <option value="1h">Duration</option>
+                                    <option value="1h" selected={getAsmt?.duration == '1h'  ? 'selected':''}>1h</option>
+                                    <option value="2h" selected={getAsmt?.duration == '2h'  ? 'selected':''}>2h</option>
+                                    <option value="3h" selected={getAsmt?.duration == '3h'  ? 'selected':''}>3h</option>
+                                    <option value="4h" selected={getAsmt?.duration == '4h'  ? 'selected':''}>4h</option>
+                                    <option value="5h" selected={getAsmt?.duration == '5h'  ? 'selected':''}>5h</option>
+                                    <option value="6h" selected={getAsmt?.duration == '6h'  ? 'selected':''}>6h</option>
+                                    <option value="7h" selected={getAsmt?.duration == '7h'  ? 'selected':''}>7h</option>
+                                    <option value="8h" selected={getAsmt?.duration == '8h'  ? 'selected':''}>8h</option>
+                                    <option value="9h" selected={getAsmt?.duration == '9h'  ? 'selected':''}>9h</option>
+                                </select>
                             </div>
                         </div>
                        

@@ -46,18 +46,18 @@ const Register = () => {
             const user = await createUser(email, password);
             if( user.user ){
                 await updateUser(name,photo );
-                // const newUser = {name ,email, photo}
-                // try {
-                //     const res = await fetch("https://assignment-10-server-theta-ivory.vercel.app/users", {
-                //         method : "POST",
-                //         headers : {"Content-type":"application/json"},
-                //         body : JSON.stringify(newUser)
-                //     });
-                //     const data = await res.json();
-                    
-                // } catch (error) {
-                //     toast.error(error.message);
-                // }
+                const newUser = {name ,email, photo}
+                try {
+                    const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/user`, {
+                        method : "POST",
+                        headers : {"Content-type":"application/json"},
+                        body : JSON.stringify(newUser)
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                } catch (error) {
+                    toast.error(error.message);
+                }
             }
             toast.success("Register Successfull")
             navigate('/');

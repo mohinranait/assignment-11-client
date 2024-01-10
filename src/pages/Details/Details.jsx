@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { IoPlay } from "react-icons/io5";
@@ -8,14 +8,29 @@ import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import useAxios from '../../hooks/useAxios';
+import Rating from "react-rating"
+import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 
 const Details = () => {
     const navigate = useNavigate();
     const {user} = useAuth();
+    const [getCourseAuthor, setGetCourseAuthor] = useState({});
 
     const axios = useAxios();
     const course = useLoaderData();
-    const {title, thumnail, marks, level,description,date} = course || {};
+    const {_id,title, thumnail, marks, level,duration,totalStudents=[],ratings=[],description,date,updateAt,user:courseAuthor} = course || {};
+    console.log(course);
+
+    const totalReivewsCount = ratings?.reduce((t , c) => t + c.rating,0);
+    const reviewAvg = totalReivewsCount/ratings?.length;
+
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_SERVER_URL}/user/${courseAuthor}`, {
+            method:"GET",
+            headers:{"Content-type":'application/json'}
+        }).then(res => res.json())
+        .then(data => setGetCourseAuthor(data));
+    },[courseAuthor])
 
     const {mutate:subMitsion} = useMutation({
         mutationFn: async (submition) => {
@@ -23,6 +38,15 @@ const Details = () => {
                 const res = await axios.post(`/create-submition`, submition);
                 const result = await res.data;
                 if( result.insertedId ){
+                    const updateCourseStudent = {
+                        totalStudents : [...totalStudents, user?.email ]
+                    }
+                    fetch(`${import.meta.env.VITE_SERVER_URL}/update-students/${_id}`, {
+                        method:"PATCH",
+                        headers:{"Content-type":'application/json'},
+                        body : JSON.stringify(updateCourseStudent)
+                    }).then(res => res.json())
+                    .then(() => '')
                     toast.success("Successfully submited");
                     navigate('/all-submited')
                 }else{
@@ -54,6 +78,27 @@ const Details = () => {
         }
     }
 
+
+    const handleReview = (e) => {
+        e.preventDefault();
+
+        const text= e.target.text.value;
+        const rating= Number(e.target.rating.value);
+        const newRating = {
+            ratings: [...ratings, {rating, text}]
+        }
+        fetch(`${import.meta.env.VITE_SERVER_URL}/update-students/${_id}`, {
+            method:"PATCH",
+            headers:{"Content-type":'application/json'},
+            body : JSON.stringify(newRating)
+        }).then(res => res.json())
+        .then((data) =>  {
+            if(data.modifiedCount > 0){
+                toast.success("Successfull review")
+            }
+        } )
+    }
+
     return (
         <>
             <section>
@@ -79,35 +124,37 @@ const Details = () => {
                                                 <li>
                                                     <button className="px-5 py-3 rounded-3xl border bg-red-300  bg-opacity-10 text-dark"><i className=" fas fa-certificate"></i> Best Seller</button>
                                                 </li>
-                                                <li className="flex items-center gap-x-1">
-                                                    <span className="text-gray-600 text-sm font-medium">4.5</span>
-                                                    <ul className="flex items-center ">
-                                                        <li><i className="fas fa-star text-sm text-yellow-500"></i></li>
-                                                        <li><i className="fas fa-star text-sm text-yellow-500"></i></li>
-                                                        <li><i className="fas fa-star text-sm text-yellow-500"></i></li>
-                                                        <li><i className="fas fa-star text-sm text-yellow-500"></i></li>
-                                                        <li><i className="fas fa-star text-sm text-yellow-500"></i></li>
+                                                <li className="flex items-center gap-x-1 ">
+                                                    <span className="text-gray-600 text-sm font-medium">{reviewAvg.toFixed(2) || 0}</span>
+                                                    <ul className="flex items-center  ">
+                                                        <Rating
+                                                        initialRating={reviewAvg}
+                                                        emptySymbol={<IoIosStarOutline />}
+                                                        fullSymbol={<IoIosStar />}
+                                                        readonly
+                                                        />
+                                                       
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <button className="px-4 py-1 rounded-md border bg-red-300  bg-opacity-10 text-dark"> 215,475 rating</button>
-                                                    <span>616,029 students</span>
+                                                    <button className="px-4 py-1 rounded-md border bg-red-300  bg-opacity-10 text-dark"> {ratings?.length} rating</button>
+                                                    <span>{totalStudents?.length} students</span>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
                                             <div className="flex items-center gap-x-3">
                                                 <a href="#" className="w-8 h-8 rounded-full ">
-                                                    <img src={avater} className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-gray-200" alt="author" />
+                                                    <img src={getCourseAuthor?.photo ? getCourseAuthor?.photo : avater} className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-gray-200" alt="author" />
                                                 </a>
-                                                <p className="text-sm text-gray-400"> By <a href="#" className="text-dark hover:text-blue-600">Angela</a> In <a  href="#" className="text-dark hover:text-blue-600">Development</a></p>
+                                                <p className="text-sm text-gray-400"> By <a href="#" className="text-dark hover:text-blue-600">{getCourseAuthor?.name || ''}</a> In <a  href="#" className="text-dark hover:text-blue-600">Development</a></p>
                                             </div>
                                         </li>
                                         <li>
                                             <ul className="flex gap-x-3">
                                                 <li className="text-gray-500 text-sm flex items-center gap-x-2">
                                                     <span><i className="fas fa-calendar-alt"></i></span>
-                                                    <span>Last updated 12/2024</span>
+                                                    <span>Last updated {updateAt?.split('T')[0]}</span>
                                                 </li>
                                                 <li className="text-gray-500 text-sm flex items-center gap-x-2">
                                                     <span> <FaCertificate /> </span>
@@ -116,6 +163,21 @@ const Details = () => {
                                             </ul>
                                         </li>
                                     </ul>
+                                    <div className='w-full'>
+                                        <form onSubmit={handleReview} className='max-w-[400px] mt-20 w-full space-y-4'>
+                                        <p className='text-xl font-bold '>Study course Review</p>
+                                            <input type="text" name='text' placeholder='Write here...' className="input w-full input-bordered" />
+                                            <select name="rating" id="" className="input w-full input-bordered">
+                                                <option value="5">Select Rating </option>
+                                                <option value="1"  >1</option>
+                                                <option value="2"  >2</option>
+                                                <option value="3"  >3</option>
+                                                <option value="4"  >4</option>
+                                                <option value="5"  >5</option>
+                                            </select>
+                                            <button type='submit' className='btn btn-primary w-full'>Submit</button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div className="col-span-2">
                                     <div className="   ">
@@ -144,6 +206,10 @@ const Details = () => {
                                             </div>
                                             <ul>
                                                 <li className="flex items-center justify-between border-b border-gray-200 py-2">
+                                                    <span className="text-base font-semibold text-gray-700">Duration</span>
+                                                    <span className="bg-gray-50 rounded-md text-xs font-bold text-gray-500 py-1 px-3">{duration}</span>
+                                                </li>
+                                                <li className="flex items-center justify-between border-b border-gray-200 py-2">
                                                     <span className="text-base font-semibold text-gray-700">Start Date</span>
                                                     <span className="bg-gray-50 rounded-md text-xs font-bold text-gray-500 py-1 px-3">{date}</span>
                                                 </li>
@@ -165,6 +231,8 @@ const Details = () => {
                     </div>
              
             </section>   
+
+     
 
 
             <dialog id="my_modal_4" className="modal">

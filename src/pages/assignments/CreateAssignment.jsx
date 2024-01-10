@@ -16,7 +16,7 @@ const CreateAssignment = () => {
     const {mutate} = useMutation({
         mutationFn: async (assignment) => {
             try {
-                const res = await axios.post('/create-assignment', assignment);
+                const res = await axios.post(`/create-assignment?email=${user?.email}`, assignment);
                 const result = await res.data;
                 if( result.insertedId ){
                     toast.success("Assignment created successfull");
@@ -40,11 +40,12 @@ const CreateAssignment = () => {
         const marks = Number(form.marks.value);
         const level = form.level.value || 'easy';
         const description = form.description.value;
+        const duration = form.duration.value;
         const thumnail = form.thumnail.value;
         const datee = date || '';
         const features = form.features.value == 'true' ? true : false;
         const email = user?.email;
-        const assignment = {title, marks,features, level, description, thumnail, date:datee, email};
+        const assignment = {title, marks,features, level,duration, description, thumnail, date:datee, email};
 
     
         
@@ -81,6 +82,26 @@ const CreateAssignment = () => {
                                     <span className="label-text">Thumnail</span>
                                 </label>
                                 <input type="text" name='thumnail' placeholder="thumnail" className="input input-bordered" required />
+                            </div>
+                        </div>
+                       
+                        <div className="grid grid-cols-1 gap-5 mb-4">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Complate Duration</span>
+                                </label>
+                                <select name="duration" id="" className="input input-bordered">
+                                    <option value="1h">Duration</option>
+                                    <option value="1h">1h</option>
+                                    <option value="2h">2h</option>
+                                    <option value="3h">3h</option>
+                                    <option value="4h">4h</option>
+                                    <option value="5h">5h</option>
+                                    <option value="6h">6h</option>
+                                    <option value="7h">7h</option>
+                                    <option value="8h">8h</option>
+                                    <option value="9h">9h</option>
+                                </select>
                             </div>
                         </div>
                        
