@@ -16,5 +16,8 @@
 
 ## Project links
 - Live Link: https://assignment-11-99dd7.web.app/
+- GitHub Client: https://github.com/mohinranait/assignment-11-client.git
+- GitHub Server: https://github.com/mohinranait/assignment-11-server.git
+
 
 

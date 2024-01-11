@@ -125,7 +125,7 @@ const Details = () => {
                                                     <button className="px-5 py-3 rounded-3xl border bg-red-300  bg-opacity-10 text-dark"><i className=" fas fa-certificate"></i> Best Seller</button>
                                                 </li>
                                                 <li className="flex items-center gap-x-1 ">
-                                                    <span className="text-gray-600 text-sm font-medium">{reviewAvg.toFixed(2) || 0}</span>
+                                                    <span className="text-gray-600 text-sm font-medium">{reviewAvg>0?reviewAvg?.toFixed(1) : 0}</span>
                                                     <ul className="flex items-center  ">
                                                         <Rating
                                                         initialRating={reviewAvg}

@@ -5,11 +5,14 @@ import textLimit from '../utils/textLimit';
 
 const AssignmentCard = ({assignment}) => {
     const location = useLocation();
-    const {_id,title,marks,thumnail, description,level} = assignment || {};
+    const {_id,title,marks,thumnail,duration, description,level} = assignment || {};
     return (
         <div className="px-5 py-5 group rounded border hover:shadow-[0px,10px,30px,red] border-slate-100 shadow bg-slate-50">
-            <div className="mb-3 overflow-hidden rounded">
-                <Link to={`/assignments/${_id}`}>
+            <div className="mb-3 overflow-hidden rounded relative">
+                <Link to={`/assignments/${_id}`} className='relative'>
+                <span className='absolute bottom-2 left-2'>
+                    <span className='relative z-50 bg-black bg-opacity-50 px-1 text-sm  rounded-sm text-white py-1'>Duration: {duration}</span>
+                </span>
                     <img className="rounded group-hover:scale-105 transition-all duration-500 mx-auto h-40 w-full object-cover" src={thumnail} alt={title} />
                 </Link>
             </div>

@@ -86,8 +86,8 @@ const SubmiteItem = ({item}) => {
                         </div>
                     </div>
                 </td>
-                <td>
-                    Pdf: {pdf}
+                <td className=''>
+                    Pdf: <span className=''>{ pdf?.length > 30 ? pdf.slice(0,30)+'...': pdf}</span>
                     <br/>
                     <span className="badge badge-ghost badge-sm">{note}</span>
                 </td>
